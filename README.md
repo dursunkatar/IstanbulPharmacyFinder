@@ -1,3 +1,3 @@
 # İstanbul Nöbetçi Eczane
 
-![istanbul-nobetci-eczane](https://github.com/dursunkatar/IstanbulNobetciEczane/blob/main/screen.jpeg)
+![istanbul-nobetci-eczane](https://github.com/dursunkatar/IstanbulNobetciEczane/blob/main/screen.jpg)
