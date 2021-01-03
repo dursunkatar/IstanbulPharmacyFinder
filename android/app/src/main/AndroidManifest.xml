@@ -15,7 +15,7 @@
         android:label="İstanbul Nöbetçi Eczane"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC0cS9Qi3e-aMYn7sApkWt02j2p5TEYUR8"/>
+            android:value="YOUR APİ KEY"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
