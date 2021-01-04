@@ -64,7 +64,7 @@ class _NobetciEczaneState extends State<NobetciEczane> {
                   Divider(),
                   Container(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height,
+                    height: MediaQuery.of(context).size.height * 0.71,
                     child: ListView.builder(
                       itemBuilder: _itemBuilder,
                       itemCount: _eczaneler.length,
@@ -213,7 +213,10 @@ class _NobetciEczaneState extends State<NobetciEczane> {
                     padding: EdgeInsets.only(left: 10),
                     child: Text(
                       _eczaneler[index].enYakinEczane ? "En Yakın" : "",
-                      style: TextStyle(color: Colors.red,fontWeight: FontWeight.bold,fontSize: 22),
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22),
                     ),
                   ),
                 ],
