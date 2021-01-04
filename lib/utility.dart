@@ -55,9 +55,8 @@ class Parse {
     try {
       final List<Eczane> _eczaneler = [];
       final document = parse(html);
-      double enDusukLatitudeFark = -1.0;
-      double latitudeFark;
-
+      double enDusukKonumFarki = -1.0;
+      double konumFarki;
       final baslik = document
           .getElementsByClassName('col-md-4')[0]
           .getElementsByClassName('card-header')[0]
@@ -68,7 +67,7 @@ class Parse {
             col.getElementsByClassName('card-header')[1].text.trim();
         final String tel =
             col.querySelectorAll('div.card-body a')[1].text.trim();
-        final String sgk = col.querySelector('.badge-success').text.trim();
+        final String sgk = col.querySelector('.badge').text.trim();
         final String adres =
             col.getElementsByTagName('label').elementAt(7).text.trim();
         final String tarif =
@@ -79,15 +78,12 @@ class Parse {
         final double lon =
             double.parse(col.innerHtml.split(';lon=')[1].split('&')[0]);
 
-        latitudeFark =  (GeolocatorEngine.latitude - lat);
-        if(latitudeFark<0){
-          latitudeFark = -1.0 * latitudeFark;
-        }
-        if (enDusukLatitudeFark == -1.0) {
-          enDusukLatitudeFark = latitudeFark;
-        } else if (latitudeFark < enDusukLatitudeFark) {
-          enDusukLatitudeFark = latitudeFark;
-        }
+        final List<double> sonuc =
+            _enDusukKonumFarki(lat, lon, enDusukKonumFarki);
+
+        konumFarki = sonuc[0];
+        enDusukKonumFarki = sonuc[1];
+
         _eczaneler.add(
           Eczane.name(
             eczaneAdi: eczaneAdi,
@@ -97,17 +93,37 @@ class Parse {
             baslik: baslik,
             lat: lat,
             lon: lon,
-            latitudeFarki: latitudeFark,
+            konumFarki: konumFarki,
           ),
         );
       });
       _eczaneler
-          .firstWhere((ecz) => ecz.latitudeFarki == enDusukLatitudeFark)
+          .firstWhere((ecz) => ecz.konumFarki == enDusukKonumFarki)
           .enYakinEczane = true;
       return _eczaneler;
     } catch (e) {
       throw e;
     }
+  }
+
+  static List<double> _enDusukKonumFarki(
+      double lat, double lon, double enDusukKonumFarki) {
+    double _latitude = (GeolocatorEngine.latitude - lat);
+    double _longitude = (GeolocatorEngine.longitude - lon);
+    final sonuc = new List<double>();
+    if (_latitude < 0) {
+      _latitude = -1.0 * _latitude;
+    }
+    if (_longitude < 0) {
+      _longitude = -1.0 * _longitude;
+    }
+    double konumFark = _latitude + _longitude;
+    sonuc.add(konumFark);
+    sonuc.add((enDusukKonumFarki == -1.0 || konumFark < enDusukKonumFarki)
+        ? konumFark
+        : enDusukKonumFarki);
+
+    return sonuc;
   }
 }
 
