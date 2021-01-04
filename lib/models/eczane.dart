@@ -7,7 +7,7 @@ class Eczane {
   String baslik;
   double lat;
   double lon;
-  double latitudeFarki;
+  double konumFarki;
   bool enYakinEczane=false;
 
   Eczane.name(
@@ -19,5 +19,5 @@ class Eczane {
       this.baslik,
       this.lat,
       this.lon,
-      this.latitudeFarki});
+      this.konumFarki});
 }
