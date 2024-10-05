@@ -1,6 +1,6 @@
-# IstanbulNobetciEczane
+# IstanbulPharmacyFinder
 
-**IstanbulNobetciEczane** is a mobile application that helps users find on-duty pharmacies in Istanbul based on their current location. The app displays a list of nearby pharmacies, complete with contact details and directions.
+**IstanbulPharmacyFinder** is a mobile application that helps users find on-duty pharmacies in Istanbul based on their current location. The app displays a list of nearby pharmacies, complete with contact details and directions.
 
 ## Features
 - Displays a list of on-duty pharmacies in Istanbul.
